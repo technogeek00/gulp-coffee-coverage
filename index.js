@@ -9,11 +9,15 @@ module.exports = function(options) {
         options = {};
     }
 
+    if(!options.coverageVar) {
+        options.coverageVar = "_$jscoverage";
+    }
+
     var instrumenter = new coverage.CoverageInstrumentor();
 
     // set global jscoverage object so files can be used 
     // in the current stream if needed
-    global._$jscoverage = {}
+    global[options.coverageVar] = {}
 
     // file processing function
     var coverFile = function(file, enc, cb) {
@@ -29,8 +33,9 @@ module.exports = function(options) {
             var fileContents = file.contents.toString(enc);
             var fileName = file.path.charAt(0) + file.path;
             var covered = instrumenter.instrumentCoffee(fileName, fileContents, {
-                bare : options.bare,
-                path : 'relative'
+                bare        : options.bare,
+                path        : 'relative',
+                coverageVar : options.coverageVar
             });
             file.contents = new Buffer(covered.init + covered.js, enc);
             file.path = gutil.replaceExtension(file.path, '.js');
