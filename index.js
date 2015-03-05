@@ -11,6 +11,10 @@ module.exports = function(options) {
 
     var instrumenter = new coverage.CoverageInstrumentor();
 
+    // set global jscoverage object so files can be used 
+    // in the current stream if needed
+    global._$jscoverage = {}
+
     // file processing function
     var coverFile = function(file, enc, cb) {
         if(file.isNull()) {
