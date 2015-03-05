@@ -1,0 +1,21 @@
+{
+  "name": "gulp-coffee-coverage",
+  "version": "0.1.0",
+  "description": "A small module that wraps the coffee-coverage plugin to allow easy CoffeeScript coverage with gulp.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "coffeescript",
+    "coffee-coverage",
+    "gulpplugin"
+  ],
+  "author": "Zachary Cava",
+  "license": "WTFPL",
+  "dependencies": {
+    "through2": "~0.6.3",
+    "coffee-coverage": "~0.4.5",
+    "gulp-util": "~3.0.4"
+  }
+}
